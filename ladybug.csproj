@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +64,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserData.cs" />
+    <Compile Include="EF\Gender.cs">
+      <DependentUpon>OurBDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OurBDModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurBDModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OurBDModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurBDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OurBDModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OurBDModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Role.cs">
+      <DependentUpon>OurBDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagrams.cs">
+      <DependentUpon>OurBDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\User.cs">
+      <DependentUpon>OurBDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Visuals\UserDataWindow.xaml.cs">
+      <DependentUpon>UserDataWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Visuals\DataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,7 +106,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserDataManager.cs" />
     <Compile Include="Visuals\DataWindow.xaml.cs">
       <DependentUpon>DataWindow.xaml</DependentUpon>
     </Compile>
@@ -76,6 +113,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Visuals\UserDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,6 +136,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="EF\OurBDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OurBDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\OurBDModel.edmx.diagram">
+      <DependentUpon>OurBDModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,6 +151,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\OurBDModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OurBDModel.Context.cs</LastGenOutput>
+      <DependentUpon>OurBDModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF\OurBDModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OurBDModel.edmx</DependentUpon>
+      <LastGenOutput>OurBDModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

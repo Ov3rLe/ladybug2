@@ -8,13 +8,13 @@
         Title="DataWindow" Height="400" Width="600">
     <Grid>
         <DataGrid x:Name="DataTable"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
+                  AutoGenerateColumns="True">
+            <!--<DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
                  <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="*"/>
-            </DataGrid.Columns>
+            </DataGrid.Columns>-->
         </DataGrid>
     </Grid>
 </Window>

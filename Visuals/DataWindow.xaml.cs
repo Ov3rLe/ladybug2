@@ -18,8 +18,7 @@ namespace ladybug.Visuals
     /// Логика взаимодействия для DataWindow.xaml
     /// </summary>
     public partial class DataWindow : Window
-    {
-        
+    {      
         public DataWindow()
         {
             InitializeComponent();
