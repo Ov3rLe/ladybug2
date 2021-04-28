@@ -10,45 +10,47 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using System.IO;
-using ladybug.EF;
+using ladybug.Visuals.Pages;
 
 namespace ladybug.Visuals
 {
     public partial class MainWindow : Window
     {
-        LessonAKYLAEntities context = new LessonAKYLAEntities();
+        bool hidden;
 
         public MainWindow()
         {
             InitializeComponent();
+            hidden = false;
+            MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
         }
 
-        private void OnShowData(object sender, RoutedEventArgs e)
+        private void HideMainPage()
         {
-            DataWindow w = new DataWindow() { Owner = this };
-            w.DataTable.ItemsSource = context.User.ToList();
-            w.ShowDialog();
+            if(hidden)
+            {
+                ButtonPanel.Visibility = Visibility.Visible;
+            }
+           
+            else
+            {
+                ButtonPanel.Visibility = Visibility.Hidden;
+            }
+
+            hidden = !hidden;
         }
 
-        private void SaveNewUser(User user)
+        private void OnSignIn(object sender, RoutedEventArgs e)
         {
-            context.User.Add(user);
-            context.SaveChanges();
+            MainFrame.Navigate(new SignInPage());
+            HideMainPage();
         }
 
-        private void OnEnter(object sender, RoutedEventArgs e)
+        private void OnSignUp(object sender, RoutedEventArgs e)
         {
-            UserDataWindow w = new UserDataWindow() { Owner = this };
-            w.ShowDialog();
 
-            if (w.NewUser.UserID == -1)
-                return;
-
-            SaveNewUser(w.NewUser);
         }
     }
 }

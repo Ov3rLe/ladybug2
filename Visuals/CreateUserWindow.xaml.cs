@@ -16,9 +16,10 @@ using ladybug.EF;
 
 namespace ladybug.Visuals
 {
-    public partial class UserDataWindow : Window
+    public partial class CreateUserWindow : Window
     {
         public User NewUser;
+        public bool validUser;
 
         enum Gender
         {
@@ -33,7 +34,7 @@ namespace ladybug.Visuals
             Guest
         }
 
-        public UserDataWindow()
+        public CreateUserWindow()
         {
             InitializeComponent();
         }
@@ -63,7 +64,7 @@ namespace ladybug.Visuals
                 return;
             }
 
-            NewUser = new User
+            NewUser = new User()
             {
                 Login = login,
                 Password = password,
@@ -73,12 +74,14 @@ namespace ladybug.Visuals
                 RoleID = (int)Role.Guest,
             };
 
+            validUser = true;
             this.Close();
         }
 
         private void Window_Closing(object sender, EventArgs e)
         {
-            NewUser = new User { UserID = -1 };
+            if (!validUser)
+                NewUser = new User { UserID = -1 };
         }
     }
 }
