@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataManager.cs" />
     <Compile Include="EF\Gender.cs">
       <DependentUpon>OurBDModel.tt</DependentUpon>
     </Compile>
@@ -91,23 +92,37 @@
     <Compile Include="EF\User.cs">
       <DependentUpon>OurBDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserStatEnums.cs" />
     <Compile Include="Visuals\CreateUserWindow.xaml.cs">
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visuals\GetLoginToDeleteWindow.xaml.cs">
+      <DependentUpon>GetLoginToDeleteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visuals\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visuals\ManagerWindow.xaml.cs">
+    <Compile Include="Visuals\RoleConsoles\GuestConsole.xaml.cs">
+      <DependentUpon>GuestConsole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visuals\RoleConsoles\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visuals\Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visuals\Pages\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Visuals\DataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visuals\AdminWindow.xaml">
+    <Page Include="Visuals\GetLoginToDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visuals\RoleConsoles\AdminWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -118,7 +133,7 @@
     <Compile Include="Visuals\DataWindow.xaml.cs">
       <DependentUpon>DataWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visuals\AdminWindow.xaml.cs">
+    <Compile Include="Visuals\RoleConsoles\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -130,11 +145,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visuals\ManagerWindow.xaml">
+    <Page Include="Visuals\RoleConsoles\GuestConsole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visuals\RoleConsoles\ManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visuals\Pages\SignInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visuals\Pages\SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,5 +211,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

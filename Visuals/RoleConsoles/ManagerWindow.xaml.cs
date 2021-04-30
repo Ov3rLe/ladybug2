@@ -14,22 +14,19 @@ using System.Windows.Shapes;
 
 using ladybug.EF;
 
-namespace ladybug.Visuals
+namespace ladybug.Visuals.RoleConsoles
 {
     public partial class ManagerWindow : Window
     {
-        LessonAKYLAEntities context;
-
         public ManagerWindow()
         {
             InitializeComponent();
-            context = new LessonAKYLAEntities();
         }
 
         private void OnShowData(object sender, RoutedEventArgs e)
         {
             DataWindow w = new DataWindow() { Owner = this };
-            w.DataTable.ItemsSource = context.User.ToList();
+            w.DataTable.ItemsSource = DataManager.GetUserList();
             w.ShowDialog();
         }
     }

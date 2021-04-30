@@ -27,7 +27,7 @@ namespace ladybug.Visuals
             MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
         }
 
-        private void HideMainPage()
+        private void ChangeMainPageVisibility()
         {
             if(hidden)
             {
@@ -44,13 +44,23 @@ namespace ladybug.Visuals
 
         private void OnSignIn(object sender, RoutedEventArgs e)
         {
+            MainFrame.Visibility = Visibility.Visible;
             MainFrame.Navigate(new SignInPage());
-            HideMainPage();
+            ChangeMainPageVisibility();
         }
 
         private void OnSignUp(object sender, RoutedEventArgs e)
         {
+            MainFrame.Visibility = Visibility.Visible;
+            MainFrame.Navigate(new SignUpPage());
+            ChangeMainPageVisibility();
+        }
 
+        private void GoBack(object sender, RoutedEventArgs e)
+        {  
+            MainFrame.Visibility = Visibility.Collapsed;
+            if(hidden)
+                ChangeMainPageVisibility();
         }
     }
 }

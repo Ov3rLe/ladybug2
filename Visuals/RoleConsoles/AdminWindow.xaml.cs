@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using System.IO;
 using ladybug.EF;
 
-namespace ladybug.Visuals
+namespace ladybug.Visuals.RoleConsoles
 {
     public partial class AdminWindow : Window
     {
@@ -31,14 +31,22 @@ namespace ladybug.Visuals
         private void OnShowData(object sender, RoutedEventArgs e)
         {
             DataWindow w = new DataWindow() { Owner = this };
-            w.DataTable.ItemsSource = context.User.ToList();
+            w.DataTable.ItemsSource = DataManager.GetUserList();
             w.ShowDialog();
         }
 
         private void SaveNewUser(User user)
         {
-            context.User.Add(user);
-            context.SaveChanges();
+            var opStatus = DataManager.AddUser(user);
+
+            if (opStatus == DataManager.OperationState.Duplicate)
+                MessageBox.Show("Пользователь с таким логином уже существует");
+        }
+
+        private void OnRemoveUser(object sender, RoutedEventArgs e)
+        {
+            GetLoginToDeleteWindow w = new GetLoginToDeleteWindow();
+            w.ShowDialog();
         }
 
         private void OnEnter(object sender, RoutedEventArgs e)
@@ -50,11 +58,6 @@ namespace ladybug.Visuals
                 return;
 
             SaveNewUser(w.NewUser);
-        }
-
-        private void OnRemoveUser(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

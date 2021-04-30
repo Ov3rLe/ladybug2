@@ -10,19 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using ladybug.EF;
-using ladybug.Misc;
+using ladybug.Misc; 
 
-namespace ladybug.Visuals
+namespace ladybug.Visuals.Pages
 {
-    public partial class CreateUserWindow : Window
+    public partial class SignUpPage : Page
     {
-        public User NewUser;
-        public bool validUser;
-
-        public CreateUserWindow()
+        public SignUpPage()
         {
             InitializeComponent();
         }
@@ -52,7 +50,7 @@ namespace ladybug.Visuals
                 return;
             }
 
-            NewUser = new User()
+            var opStatus = DataManager.AddUser(new User()
             {
                 Login = login,
                 Password = password,
@@ -60,16 +58,13 @@ namespace ladybug.Visuals
                 PhoneNumber = phoneNumber,
                 GenderID = (bool)MaleBox.IsChecked ? (int)GenderCode.Male : (int)GenderCode.Female,
                 RoleID = (int)RoleCode.Guest,
-            };
+            });
 
-            validUser = true;
-            this.Close();
-        }
+            if (opStatus == DataManager.OperationState.Duplicate)
+                MessageBox.Show("Пользователь с таким логином уже существует");
 
-        private void Window_Closing(object sender, EventArgs e)
-        {
-            if (!validUser)
-                NewUser = new User { UserID = -1 };
+            else
+                MessageBox.Show("Добро пожаловать!");
         }
     }
 }

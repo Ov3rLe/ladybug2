@@ -8,13 +8,16 @@
         Title="DataWindow" Height="400" Width="600">
     <Grid>
         <DataGrid x:Name="DataTable"
-                  AutoGenerateColumns="True">
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
-                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
-                 <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="*"/>
-            </DataGrid.Columns>-->
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="*"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="*"/>
+
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender.GenderName}" Width="*"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role.RoleName}" Width="*"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

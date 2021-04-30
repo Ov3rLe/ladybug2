@@ -13,20 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using ladybug.EF;   
+using ladybug.EF;
+using ladybug.Misc;
+using ladybug.Visuals.RoleConsoles;
 
 namespace ladybug.Visuals.Pages
 {
     public partial class SignInPage : Page
     {
         LessonAKYLAEntities context;
-
-        enum Role
-        {
-            Admin = 1,
-            Manager,
-            Guest
-        }
 
         public SignInPage()
         {
@@ -58,21 +53,21 @@ namespace ladybug.Visuals.Pages
                 {
                     switch (foundUser.RoleID)
                     {
-                        case (int)Role.Admin:
+                        case (int)RoleCode.Admin:
                             new AdminWindow().ShowDialog();
                             break;
 
-                        case (int)Role.Manager:
+                        case (int)RoleCode.Manager:
                             new ManagerWindow().ShowDialog();
                             break;
 
-                        case (int)Role.Guest:
+                        case (int)RoleCode.Guest:
+                            new GuestConsole(login).ShowDialog();
                             break;
 
                         default:
                             break;
                     }
-
                 }
 
                 else
